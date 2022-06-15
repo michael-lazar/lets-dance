@@ -1,6 +1,6 @@
 # Let's Dance 💃
 
-*Let's Dance* is a playful [Spring '83](https://github.com/robinsloan/spring-83-spec) server written in django.
+*Let's Dance* is a humble [Spring '83](https://github.com/robinsloan/spring-83-spec) server written in django.
 
 ## Requirements
 
