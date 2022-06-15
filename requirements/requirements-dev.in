@@ -1,0 +1,9 @@
+-r requirements.txt
+django-stubs
+django_coverage_plugin
+mypy
+pip-tools
+pytest
+pytest-cov
+pytest-django
+types-requests

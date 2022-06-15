@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+python3.10 -m venv venv
+source venv/bin/activate
+
+python -m pip install -r requirements/requirements-dev.txt
+python manage.py migrate
+python manage.py loaddata admin_interface_theme_uswds.json
+
+echo "Bootstrap completed!"
+echo "To initialize an admin account, run:"
+echo "tools/manage createsuperuser"
+echo ""
+echo "To launch the server, run:"
+echo "tools/start"

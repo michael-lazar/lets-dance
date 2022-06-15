@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% load random %}
+
+{% block extrahead %}
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+div.header {
+    background: #112E51;
+    margin: 0 0 20px 0;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+a.header-link {
+    color: white;
+}
+a.header-link:visited {
+    color: white;
+}
+div.newsstand {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 2000px;
+}
+div.board {
+    cursor: pointer;
+}
+span.pin {
+    position: relative;
+    float: left;
+    top: -20px;
+}
+iframe {
+    border: 1px solid black;
+    height: 200px;
+    width: 141px;
+    pointer-events: none;
+    transform: scale(1.1);
+    overflow: hidden;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="header">
+    <a class="header-link" href="https://github.com/michael-lazar/lets-dance">Spring '83</a>
+    <a class="header-link" href="{% url "admin:index" %}">login</a>
+</div>
+<div class="newsstand">
+{% for board in boards %}
+    <div class="board" title="{{ board.key }}"
+         onclick="window.open('{% url "board" board.key %}', '_blank', 'height=800,width=564');"
+         style="transform: rotate({% uniform -5 5 %}deg) translate({% randint -5 5 %}px, {% randint -5 5 %}px);
+                background: hsla({% randint 0 360 %},70%,95%,1);">
+        <span class="pin"style="left: {% randint 30 70 %}%; transform: scale({% choice -0.7 0.7 %}, 0.7); z-index: 20">📌</span>
+        <iframe srcdoc="{{ board.content }}" sandbox="" allowtransparency="false" scrolling="no"></iframe>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
