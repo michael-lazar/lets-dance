@@ -21,6 +21,7 @@ if DEBUG:
     SECRET_KEY = env.str("SECRET_KEY", "PLEASE_REPLACE_ME!")
 else:
     SECRET_KEY = env.str("SECRET_KEY")
+    CSRF_TRUSTED_ORIGINS = [env.str("TRUSTED_ORIGIN")]
 
 ALLOWED_HOSTS = ["*"]
 
