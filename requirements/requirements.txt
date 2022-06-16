@@ -114,6 +114,10 @@ django-colorfield==0.7.1 \
     --hash=sha256:08d093d5b31b599b681665ab97b957045c4a4c0b93cfc434bd257378a7193c96 \
     --hash=sha256:a58d1c5a56f0380439dc1305a131321b839df35ddfac2a6dbcc887de02232120
     # via django-admin-interface
+django-environ==0.9.0 \
+    --hash=sha256:bff5381533056328c9ac02f71790bd5bf1cea81b1beeb648f28b81c9e83e0a21 \
+    --hash=sha256:f21a5ef8cc603da1870bbf9a09b7e5577ab5f6da451b843dbcc721a7bca6b3d9
+    # via -r requirements/requirements.in
 django-extensions==3.1.5 \
     --hash=sha256:28e1e1bf49f0e00307ba574d645b0af3564c981a6dfc87209d48cb98f77d0b1a \
     --hash=sha256:9238b9e016bb0009d621e05cf56ea8ce5cce9b32e91ad2026996a7377ca28069

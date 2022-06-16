@@ -6,4 +6,4 @@ set -o nounset
 
 source venv/bin/activate
 python manage.py migrate
-python manage.py runserver --noreload "$@"
+python manage.py runserver --noreload --insecure "$@"

@@ -2,6 +2,7 @@ Django>=4,<5
 apscheduler
 cryptography
 django-admin-interface
+django-environ
 django-extensions
 factory-boy
 gunicorn
