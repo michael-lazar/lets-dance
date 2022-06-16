@@ -40,7 +40,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         last_modified = timezone.now()
         key = options["public_key"]
-        url = options["url"]
+        url = options["server_url"]
 
         content = options["content_file"].read()
         content = (
