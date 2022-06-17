@@ -2,7 +2,9 @@
 
 *Let's Dance* is a humble [Spring '83](https://github.com/robinsloan/spring-83-spec) server written in django.
 
-Now live at [https://spring83.mozz.us](https://spring83.mozz.us)
+Now live at [https://spring83.mozz.us](https://spring83.mozz.us).
+
+See my thoughts on the protocol [here](/Notes.md).
 
 ## Requirements
 
