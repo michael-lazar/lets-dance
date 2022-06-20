@@ -15,22 +15,13 @@ from letsdance.core.utils import date_to_header, generate_fake_board_content
 class TestIndexView(TestCase):
     def test_difficulty_factor_zero(self):
         """
-        Difficulty factor should be zero if there are no boards.
-        """
-        response = self.client.get(reverse("index"))
-        assert response.status_code == 200
-        assert response.headers["Spring-Version"] == "83"
-        assert response.headers["Spring-Difficulty"] == "0.0"
-
-    def test_difficulty_factor_positive(self):
-        """
-        Difficulty factor should be very small (but greater than zero) if there are boards.
+        Difficulty factor should always be zero.
         """
         BoardFactory.create_batch(10)
         response = self.client.get(reverse("index"))
         assert response.status_code == 200
         assert response.headers["Spring-Version"] == "83"
-        assert float(response.headers["Spring-Difficulty"]) > 0
+        assert response.headers["Spring-Difficulty"] == "0.0"
 
 
 class TestBoardView(TestCase):

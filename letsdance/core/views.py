@@ -44,7 +44,7 @@ class IndexView(View):
 
         response = HttpResponse(content)
         response.headers["Spring-Version"] = "83"
-        response.headers["Spring-Difficulty"] = f"{Board.get_difficulty_factor()}"
+        response.headers["Spring-Difficulty"] = "0"
         return response
 
 

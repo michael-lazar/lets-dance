@@ -6,7 +6,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone
 
-from letsdance.core.constants import BOARD_MAX_COUNT, TEST_KEY_PUBLIC, TEST_KEY_SECRET
+from letsdance.core.constants import TEST_KEY_PUBLIC, TEST_KEY_SECRET
 from letsdance.core.crypto import load_private_key
 from letsdance.core.utils import generate_fake_board_content
 
@@ -40,12 +40,6 @@ class Board(models.Model):
 
     def __str__(self):
         return self.key
-
-    @classmethod
-    def get_difficulty_factor(cls) -> float:
-        num_boards_stored = cls.objects.all().count()
-        difficulty_factor = (num_boards_stored / BOARD_MAX_COUNT) ** 4
-        return difficulty_factor
 
     @classmethod
     def generate_board(cls) -> Board:
