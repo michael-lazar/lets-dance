@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block extrahead %}
-<meta http-equiv="last-modified" content="{{ last_modified }}">
+{% block time %}
+<time datetime="{{ last_modified }}">
 {% endblock %}
 
 {% block body %}

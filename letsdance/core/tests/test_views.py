@@ -21,7 +21,7 @@ class TestIndexView(TestCase):
         response = self.client.get(reverse("index"))
         assert response.status_code == 200
         assert response.headers["Spring-Version"] == "83"
-        assert response.headers["Spring-Difficulty"] == "0.0"
+        assert response.headers["Spring-Difficulty"] == "0"
 
 
 class TestBoardView(TestCase):
@@ -191,9 +191,9 @@ class TestBoardView(TestCase):
         assert response.status_code == 401
 
     @skip_public_key_validation
-    def test_put_missing_last_modified_meta(self, *_):
+    def test_put_missing_last_modified_time(self, *_):
         """
-        The last-modified meta tag must be included in the html.
+        The last-modified <time> tag must be included in the html.
         """
         last_modified = timezone.now()
         private_key = generate_private_key()

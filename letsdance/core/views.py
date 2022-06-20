@@ -177,25 +177,28 @@ class BoardView(View):
 
     def validate_last_modified_meta(self, content: str, board: Board | None) -> datetime:
         """
-        Validate the last-modified date from a <meta> tag in the board HTML.
+        Validate the last-modified date from a <time> tag in the board HTML.
         """
         selector = Selector(content)
-        tags = selector.css('meta[http-equiv="last-modified"]')
+        tags = selector.css("time")
         if not tags:
-            raise Spring83Exception("Board is missing last-modified <meta> tag.", status=400)
+            raise Spring83Exception("Board is missing last-modified <time> tag.", status=400)
 
         if len(tags) > 1:
             raise Spring83Exception(
-                "Board contains more than one last-modified <meta> tag", status=400
+                "Board contains more than one last-modified <time> tag", status=400
             )
 
         tag = tags[0]
 
-        last_modified = date_from_header(tag.attrib.get("content", None))
-        if last_modified is None:
+        last_modified_str = tag.attrib.get("datetime", None)
+        if last_modified_str is None:
             raise Spring83Exception(
-                "Unable to parse date from last-modified <meta> tag.", status=400
+                "Unable to parse date from last-modified <time> tag.", status=400
             )
+
+        last_modified = datetime.strptime(last_modified_str, "%Y-%m-%dT%H:%M:%SZ")
+        last_modified = last_modified.replace(tzinfo=timezone.utc)
 
         if last_modified > timezone.now():
             raise Spring83Exception(

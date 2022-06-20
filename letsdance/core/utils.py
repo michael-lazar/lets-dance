@@ -30,7 +30,7 @@ def generate_fake_board_content(last_modified: datetime) -> str:
         "board.html",
         {
             "body": fake.paragraphs(),
-            "last_modified": date_to_header(last_modified),
+            "last_modified": f"{last_modified:%Y-%m-%dT%H:%M:%SZ}",
         },
     )
     return content

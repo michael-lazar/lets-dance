@@ -8,7 +8,6 @@ from letsdance.core.client import put_board
 from letsdance.core.constants import BOARD_MAX_SIZE_BYTES
 from letsdance.core.crypto import load_private_key
 from letsdance.core.models import Board
-from letsdance.core.utils import date_to_header
 
 
 class Command(BaseCommand):
@@ -43,10 +42,7 @@ class Command(BaseCommand):
         url = options["server_url"]
 
         content = options["content_file"].read()
-        content = (
-            f'<meta http-equiv="last-modified" content="{date_to_header(last_modified)}">\n'
-            + content
-        )
+        content = f'<time datetime="{last_modified:%Y-%m-%dT%H:%M:%SZ)}">\n' + content
         encoded_content = content.encode()
         if len(encoded_content) > BOARD_MAX_SIZE_BYTES:
             raise CommandError(f"Board exceeds maximum size of {BOARD_MAX_SIZE_BYTES} bytes.")

@@ -7,13 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+This release mostly implements the Spring '83 spec revision 1, dated 2022-06-16.
+
 ### Added
 
+- Added `CHANGELOG.md` file to track versions.
 - Set the difficulty factor to a constant value of `0`.
 
 ### Changed
 
 - Fixed typo in `tools/manage publish_board` command.
+- Switch from `<meta>` tag to `<time>` tag for the last modified date.
 
 ## v0.0.1 (2022-06-15)
 
