@@ -45,7 +45,9 @@ class Command(BaseCommand):
         content = f'<time datetime="{last_modified:%Y-%m-%dT%H:%M:%SZ}">\n' + content
         encoded_content = content.encode()
         if len(encoded_content) > BOARD_MAX_SIZE_BYTES:
-            raise CommandError(f"Board exceeds maximum size of {BOARD_MAX_SIZE_BYTES} bytes.")
+            raise CommandError(
+                f"Board exceeds maximum size of {BOARD_MAX_SIZE_BYTES} bytes ({len(encoded_content)})."
+            )
 
         private_key = load_private_key(options["private_key"])
         signature = private_key.sign(encoded_content).hex()

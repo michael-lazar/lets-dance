@@ -24,8 +24,8 @@ def put_board(board: Board, peer_url: str) -> requests.Response:
         "If-Unmodified-Since": date_to_header(board.last_modified),
         "Authorization": f"Spring-83 Signature={board.signature}",
     }
-
-    response = requests.put(url, data=board.content, headers=headers, timeout=5)
+    data = board.content.encode("utf-8")
+    response = requests.put(url, data=data, headers=headers, timeout=5)
     return response
 
 
