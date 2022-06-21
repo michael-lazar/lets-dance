@@ -1,6 +1,7 @@
 -r requirements.txt
 django-stubs
 django_coverage_plugin
+freezegun
 mypy
 pip-tools
 pytest

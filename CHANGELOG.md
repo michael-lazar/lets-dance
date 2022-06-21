@@ -12,12 +12,13 @@ This release mostly implements the Spring '83 spec revision 1, dated 2022-06-16.
 ### Added
 
 - Added `CHANGELOG.md` file to track versions.
-- Set the difficulty factor to a constant value of `0`.
 
 ### Changed
 
 - Fixed typo in `tools/manage publish_board` command.
 - Switch from `<meta>` tag to `<time>` tag for the last modified date.
+- Set the difficulty factor to a constant value of `0`.
+- Updated valid public key pattern to `83e(0[1-9]|1[0-2])(\d\d)`.
 
 ## v0.0.1 (2022-06-15)
 

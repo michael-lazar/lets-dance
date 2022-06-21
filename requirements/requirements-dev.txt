@@ -221,6 +221,10 @@ faker==13.13.0 \
     # via
     #   -r requirements/requirements.txt
     #   factory-boy
+freezegun==1.2.1 \
+    --hash=sha256:15103a67dfa868ad809a8f508146e396be2995172d25f927e48ce51c0bf5cb09 \
+    --hash=sha256:b4c64efb275e6bc68dc6e771b17ffe0ff0f90b81a2a5189043550b6519926ba4
+    # via -r requirements/requirements-dev.in
 gunicorn==20.1.0 \
     --hash=sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e \
     --hash=sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8
@@ -430,6 +434,7 @@ python-dateutil==2.8.2 \
     # via
     #   -r requirements/requirements.txt
     #   faker
+    #   freezegun
 pytz==2022.1 \
     --hash=sha256:1e760e2fe6a8163bc0b3d9a19c4f84342afa0a2affebfaa84b01b978a02ecaa7 \
     --hash=sha256:e68985985296d9a66a881eb3193b0906246245294a881e7c8afe623866ac6a5c

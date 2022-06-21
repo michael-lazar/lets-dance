@@ -42,7 +42,7 @@ class Command(BaseCommand):
         url = options["server_url"]
 
         content = options["content_file"].read()
-        content = f'<time datetime="{last_modified:%Y-%m-%dT%H:%M:%SZ)}">\n' + content
+        content = f'<time datetime="{last_modified:%Y-%m-%dT%H:%M:%SZ}">\n' + content
         encoded_content = content.encode()
         if len(encoded_content) > BOARD_MAX_SIZE_BYTES:
             raise CommandError(f"Board exceeds maximum size of {BOARD_MAX_SIZE_BYTES} bytes.")
@@ -57,6 +57,7 @@ class Command(BaseCommand):
             last_modified=last_modified,
         )
         self.stdout.write(f"Uploading board to {url}")
+        self.stdout.write(content)
         try:
             response = put_board(board, url)
         except ConnectionError as e:

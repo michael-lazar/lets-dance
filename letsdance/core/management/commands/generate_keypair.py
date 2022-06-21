@@ -6,7 +6,7 @@ from letsdance.core.crypto import (
     dump_private_key,
     dump_public_key,
     generate_private_key,
-    get_valid_public_key_endings,
+    validate_public_key,
 )
 
 
@@ -14,8 +14,7 @@ class Command(BaseCommand):
     help = "Generate a new, valid Spring '83 keypair."
 
     def handle(self, *args, **options):
-        valid_endings = get_valid_public_key_endings()
-        self.stderr.write(f"Finding an ed25519 key ending with: {valid_endings}")
+        self.stderr.write("Generating a valid ed25519 key, this may take a while...")
 
         start = time.time()
         i = 0
@@ -25,7 +24,7 @@ class Command(BaseCommand):
             private_key = generate_private_key()
             public_key = private_key.public_key()
             public_key_hex = dump_public_key(public_key)
-            if public_key_hex.endswith(valid_endings):
+            if validate_public_key(public_key_hex):
                 break
             i += 1
 

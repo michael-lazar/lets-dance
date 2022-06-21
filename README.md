@@ -4,7 +4,7 @@
 
 Now live at [https://spring83.mozz.us](https://spring83.mozz.us).
 
-See my thoughts on the protocol [here](/Notes.md).
+See my [notes](/Notes.md) on the protocol.
 
 ## Requirements
 
