@@ -65,4 +65,4 @@ class Command(BaseCommand):
         except ConnectionError as e:
             self.stdout.write(str(e))
         else:
-            self.stdout.write(f"Server response: {response.status_code}")
+            self.stdout.write(f"Server response: {response.status_code} {response.content}")

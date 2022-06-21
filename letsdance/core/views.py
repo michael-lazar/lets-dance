@@ -72,7 +72,7 @@ class BoardView(View):
 
         response = HttpResponse(board.content)
         response.headers["Spring-Version"] = "83"
-        response.headers["Authorization"] = f"Spring-83 Signature={board.signature}"
+        response.headers["Spring-Signature"] = board.signature
         return response
 
     @catch_spring83_exceptions
@@ -120,7 +120,7 @@ class BoardView(View):
 
         response = HttpResponse(message)
         response.headers["Spring-Version"] = "83"
-        response.headers["Authorization"] = f"Spring-83 Signature={board.signature}"
+        response.headers["Spring-Signature"] = board.signature
         return response
 
     def validate_content(self, request: HttpRequest) -> str:
@@ -150,14 +150,10 @@ class BoardView(View):
         """
         Validate that the authorization header and signature is correct.
         """
-        if "Authorization" not in request.headers:
-            raise Spring83Exception("Missing authorization header.", status=401)
+        if "Spring-Signature" not in request.headers:
+            raise Spring83Exception("Missing Spring-Signature header.", status=401)
 
-        authorization = request.headers["Authorization"]
-        if not authorization.startswith("Spring-83 Signature="):
-            raise Spring83Exception("Invalid authorization format.", status=401)
-
-        signature = authorization.removeprefix("Spring-83 Signature=")
+        signature = request.headers["Spring-Signature"]
         if not verify_signature(signature, key, request.body):
             raise Spring83Exception("Board was submitted without a valid signature.", status=401)
 

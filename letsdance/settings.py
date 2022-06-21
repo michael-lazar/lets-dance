@@ -10,7 +10,7 @@ env.smart_cast = False
 BASE_DIR = os.path.dirname(__file__)
 
 NAME = "lets-dance"
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 USER_AGENT = f"{NAME}/{VERSION}"
 
 # SECURITY WARNING: don't run with debug turned on in production!

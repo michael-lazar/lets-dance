@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## v0.1.1 (2022-06-21)
+
 ### Changed
 
 - Fixed unicode encoding error when publishing boards.
+- Replaced `Authorization` header with `Spring-Signature`.
 
 ## v0.1.0 (2022-06-20)
 

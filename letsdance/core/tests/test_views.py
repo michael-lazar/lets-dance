@@ -68,7 +68,7 @@ class TestBoardView(TestCase):
         assert response.status_code == 200
         assert response.getvalue() == board.content.encode()
         assert response.headers["Spring-Version"] == "83"
-        assert response.headers["Authorization"] == f"Spring-83 Signature={board.signature}"
+        assert response.headers["Spring-Signature"] == board.signature
 
     def test_get_test_board(self):
         """
@@ -78,7 +78,7 @@ class TestBoardView(TestCase):
         assert response.status_code == 200
         assert response.getvalue()
         assert response.headers["Spring-Version"] == "83"
-        assert response.headers["Authorization"]
+        assert response.headers["Spring-Signature"]
 
     def test_put_above_max_size(self):
         """
@@ -91,7 +91,7 @@ class TestBoardView(TestCase):
 
         headers = {
             "HTTP_IF_UNMODIFIED_SINCE": date_to_header(timezone.now()),
-            "HTTP_AUTHORIZATION": f"Spring-83 Signature={signature}",
+            "HTTP_SPRING_SIGNATURE": signature,
         }
         url = reverse("board", args=[key])
         response = self.client.put(url, data=content, content_type="text/html", **headers)
@@ -108,7 +108,7 @@ class TestBoardView(TestCase):
 
         headers = {
             "HTTP_IF_UNMODIFIED_SINCE": date_to_header(last_modified),
-            "HTTP_AUTHORIZATION": f"Spring-83 Signature={signature}",
+            "HTTP_SPRING_SIGNATURE": signature,
         }
         url = reverse("board", args=[TEST_KEY_PUBLIC])
         response = self.client.put(url, data=content, content_type="text/html", **headers)
@@ -126,7 +126,7 @@ class TestBoardView(TestCase):
 
         headers = {
             "HTTP_IF_UNMODIFIED_SINCE": date_to_header(last_modified),
-            "HTTP_AUTHORIZATION": f"Spring-83 Signature={signature}",
+            "HTTP_SPRING_SIGNATURE": signature,
         }
         url = reverse("board", args=[key])
         response = self.client.put(url, data=content, content_type="text/html", **headers)
@@ -147,7 +147,7 @@ class TestBoardView(TestCase):
 
         headers = {
             "HTTP_IF_UNMODIFIED_SINCE": date_to_header(last_modified - timedelta(hours=1)),
-            "HTTP_AUTHORIZATION": f"Spring-83 Signature={signature}",
+            "HTTP_SPRING_SIGNATURE": signature,
         }
         url = reverse("board", args=[key])
         response = self.client.put(url, data=content, content_type="text/html", **headers)
@@ -183,7 +183,7 @@ class TestBoardView(TestCase):
 
         headers = {
             "HTTP_IF_UNMODIFIED_SINCE": date_to_header(last_modified),
-            "HTTP_AUTHORIZATION": f"Spring-83 Signature={signature}",
+            "HTTP_SPRING_SIGNATURE": signature,
         }
         url = reverse("board", args=[key])
         malicious_content = content + "😈"
@@ -203,7 +203,7 @@ class TestBoardView(TestCase):
 
         headers = {
             "HTTP_IF_UNMODIFIED_SINCE": date_to_header(last_modified),
-            "HTTP_AUTHORIZATION": f"Spring-83 Signature={signature}",
+            "HTTP_SPRING_SIGNATURE": signature,
         }
         url = reverse("board", args=[key])
         response = self.client.put(url, data=content, content_type="text/html", **headers)
@@ -222,7 +222,7 @@ class TestBoardView(TestCase):
 
         headers = {
             "HTTP_IF_UNMODIFIED_SINCE": date_to_header(last_modified),
-            "HTTP_AUTHORIZATION": f"Spring-83 Signature={signature}",
+            "HTTP_SPRING_SIGNATURE": signature,
         }
         url = reverse("board", args=[key])
         response = self.client.put(url, data=content, content_type="text/html", **headers)
@@ -247,7 +247,7 @@ class TestBoardView(TestCase):
 
         headers = {
             "HTTP_IF_UNMODIFIED_SINCE": date_to_header(timezone.now()),
-            "HTTP_AUTHORIZATION": f"Spring-83 Signature={signature}",
+            "HTTP_SPRING_SIGNATURE": signature,
         }
         url = reverse("board", args=[key])
         response = self.client.put(url, data=content, content_type="text/html", **headers)

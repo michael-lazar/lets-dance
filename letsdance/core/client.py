@@ -21,8 +21,8 @@ def put_board(board: Board, peer_url: str) -> requests.Response:
         "User-Agent": settings.USER_AGENT,
         "Content-Type": "text/html;charset=utf-8",
         "Spring-Version": "83",
+        "Spring-Signature": f"{board.signature}",
         "If-Unmodified-Since": date_to_header(board.last_modified),
-        "Authorization": f"Spring-83 Signature={board.signature}",
     }
     data = board.content.encode("utf-8")
     response = requests.put(url, data=data, headers=headers, timeout=5)
