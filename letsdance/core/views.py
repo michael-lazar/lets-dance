@@ -39,7 +39,7 @@ class IndexView(View):
         """
         Retrieve the current difficulty.
         """
-        context = {"boards": Board.objects.all().order_by("?")[:500]}
+        context = {"boards": Board.objects.all().order_by("-last_modified")[:500]}
         content = render_to_string("newsstand.html", context, request)
 
         response = HttpResponse(content)

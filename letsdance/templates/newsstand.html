@@ -7,6 +7,7 @@
 body {
     margin: 0;
     padding: 0;
+    background: floralwhite;
 }
 div.header {
     background: #112E51;
@@ -26,22 +27,26 @@ div.newsstand {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    width: 2000px;
 }
 div.board {
     cursor: pointer;
+    border: 1px solid black;
+    background: white;
+}
+div.board-header {
+    border-bottom: 1px solid;
 }
 span.pin {
     position: relative;
     float: left;
-    top: -20px;
+    top: -10px;
+    margin-left: -1.2em;
 }
 iframe {
-    border: 1px solid black;
-    height: 200px;
-    width: 141px;
+    border: 0;
+    height: 400px;
+    width: 282px;
     pointer-events: none;
-    transform: scale(1.1);
     overflow: hidden;
 }
 </style>
@@ -56,9 +61,10 @@ iframe {
 {% for board in boards %}
     <div class="board" title="{{ board.key }}"
          onclick="window.open('{% url "board" board.key %}', '_blank', 'height=800,width=564');"
-         style="transform: rotate({% uniform -5 5 %}deg) translate({% randint -5 5 %}px, {% randint -5 5 %}px);
-                background: hsla({% randint 0 360 %},70%,95%,1);">
-        <span class="pin"style="left: {% randint 30 70 %}%; transform: scale({% choice -0.7 0.7 %}, 0.7); z-index: 20">📌</span>
+         style="transform: rotate({% uniform -5 5 %}deg) translate({% randint -5 5 %}px, {% randint -5 5 %}px);">
+        <div class="board-header">
+            <b>{{ board.key|slice:"12" }}</b> ({{ board.last_modified|timesince }} ago)
+        </div>
         <iframe srcdoc="{{ board.content }}" sandbox="" allowtransparency="false" scrolling="no"></iframe>
     </div>
 {% endfor %}
