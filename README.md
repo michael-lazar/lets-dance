@@ -61,3 +61,12 @@ curl http://wttr.in
 ## Deploying to Production
 
 You're on your own!
+
+## License
+
+[The Human Software License](https://license.mozz.us)
+
+> A hobbyist software license that promotes maintainer happiness
+> through personal interactions. Non-human
+> [legal entities](https://en.wikipedia.org/wiki/Legal_person) such as
+> corporations and agencies aren't allowed to participate.
