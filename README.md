@@ -16,7 +16,7 @@ See my [notes](/Notes.md) on the protocol.
 ```bash
 # Download the source
 git clone https://github.com/michael-lazar/lets-dance
-cd django83/
+cd lets-dance/
 
 # Initialize a virtual environment and install pip dependencies, etc.
 tools/boostrap
