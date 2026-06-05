@@ -1,3 +1,34 @@
+[project]
+name = "lets-dance"
+version = "0.1.1"
+description = "Spring '83 reference server."
+requires-python = "==3.14.*"
+dependencies = [
+    "Django>=5.2,<6",
+    "apscheduler",
+    "cryptography",
+    "django-admin-interface",
+    "django-environ",
+    "django-extensions",
+    "faker",
+    "gunicorn",
+    "parsel",
+    "requests",
+]
+
+[dependency-groups]
+dev = [
+    "django-coverage-plugin",
+    "django-stubs",
+    "factory-boy",
+    "freezegun",
+    "mypy",
+    "pytest",
+    "pytest-cov",
+    "pytest-django",
+    "types-requests",
+]
+
 [tool.black]
 line-length = 100
 

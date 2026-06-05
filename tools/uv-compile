@@ -4,6 +4,4 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-export PYTHONUNBUFFERED=1
-
-exec uv run pytest "$@"
+exec uv lock "$@"

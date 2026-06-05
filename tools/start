@@ -4,6 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-source venv/bin/activate
-python manage.py migrate
-python manage.py runserver --noreload --insecure "$@"
+export PYTHONUNBUFFERED=1
+
+uv run python manage.py migrate
+exec uv run python manage.py runserver "$@"

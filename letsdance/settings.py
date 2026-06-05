@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import os
 
 import environ
@@ -87,6 +85,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "..", "data", "static")
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

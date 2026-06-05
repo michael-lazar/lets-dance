@@ -1,7 +1,6 @@
-from datetime import datetime
+from datetime import UTC, datetime
 
 from django.template.loader import render_to_string
-from django.utils import timezone
 from django.utils.http import http_date, parse_http_date_safe
 from faker import Faker
 
@@ -22,7 +21,7 @@ def date_from_header(header: str) -> datetime | None:
     timestamp = parse_http_date_safe(header)
     if timestamp is None:
         return None
-    return datetime.fromtimestamp(timestamp, tz=timezone.utc)
+    return datetime.fromtimestamp(timestamp, tz=UTC)
 
 
 def generate_fake_board_content(last_modified: datetime) -> str:

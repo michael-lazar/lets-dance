@@ -8,7 +8,8 @@ See my [notes](/Notes.md) on the protocol.
 
 ## Requirements
 
-- python 3.10
+- python 3.14
+- [uv](https://docs.astral.sh/uv/)
 - a strong constitution
 
 ## Development
@@ -18,8 +19,8 @@ See my [notes](/Notes.md) on the protocol.
 git clone https://github.com/michael-lazar/lets-dance
 cd lets-dance/
 
-# Initialize a virtual environment and install pip dependencies, etc.
-tools/boostrap
+# Initialize a virtual environment and install dependencies, etc.
+tools/bootstrap
 
 # Create a user account for the admin dashboard
 tools/manage createsuperuser
@@ -37,9 +38,9 @@ tools/mypy
 # Tinker with the database
 sqlite3 data/lets-dance.sqlite3
 
-# Rebuild requirements
-tools/pip-compile
-tools/pip-install
+# Rebuild the dependency lockfile
+tools/uv-compile
+tools/uv-install
 
 # Generate a usable ed25519 key
 tools/manage generate_keypair

@@ -1,8 +1,6 @@
-from __future__ import annotations
-
 import logging
-from datetime import datetime, timedelta
-from typing import Callable
+from collections.abc import Callable
+from datetime import UTC, datetime, timedelta
 
 from apscheduler.jobstores.base import ConflictingIdError
 from django.http import HttpRequest, HttpResponse
@@ -194,7 +192,7 @@ class BoardView(View):
             )
 
         last_modified = datetime.strptime(last_modified_str, "%Y-%m-%dT%H:%M:%SZ")
-        last_modified = last_modified.replace(tzinfo=timezone.utc)
+        last_modified = last_modified.replace(tzinfo=UTC)
 
         if last_modified > timezone.now():
             raise Spring83Exception(

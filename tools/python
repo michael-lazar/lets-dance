@@ -4,5 +4,6 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-source venv/bin/activate
-python "$@"
+export PYTHONUNBUFFERED=1
+
+exec uv run python "$@"
